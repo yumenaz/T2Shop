@@ -1,0 +1,25 @@
+<h1>Listing carousel</h1>
+<table>
+<% @carousels.each do |carousel| %>
+<tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+<td>
+<%= image_tag(carousel.image, class: 'list_image') %>
+</td>
+<td class="list_description">
+<dl>
+<dt><%= carousel.headline %></dt>
+<dd><%= truncate(strip_tags(carousel.note), length: 80) %></dd>
+</dl>
+</td>
+<td class="list_actions">
+<%= link_to 'Show', carousel %><br/>
+<%= link_to 'Edit', edit_carousel_path(carousel) %><br/>
+<%= link_to 'Destroy', carousel, method: :delete,
+data: { confirm: 'Are you sure?' } %>
+</td>
+</tr>
+<% end %>
+</table>
+<br />
+
+<%= link_to 'New Carousel', new_carousel_path %>
